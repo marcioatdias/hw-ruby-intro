@@ -37,5 +37,20 @@ end
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  attr_accessor :isbn
+  attr_accessor :price
+  def price_as_string
+    price_arr = @price.to_s.split('.')
+    
+    "$" << price_arr[0] << "." << price_arr[1].ljust(2,'0')
+  end
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = price.to_f.round(2)
+    if @isbn.empty? || @price <= 0
+      raise(ArgumentError)
+      
+    end
+  end
 end
+
